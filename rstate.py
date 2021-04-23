@@ -19,14 +19,29 @@ class RState(Revision):
          etc.
     '''
 
-    def __init__(self, rstate_string):
-        pass
-
     def next_build(self):
-        pass
+        return self
 
     def next_number(self):
-        pass
+        return self
 
     def next_letter(self):
-        pass
+        return self
+
+if __name__ == "__main__":
+    revision = RState("R9V001")
+    for i in range(0, 2):
+        if str(revision) != "R9V001":
+            revision.next_number()
+        print(revision)
+        for j in range(0, 5):
+            revision = revision.next_letter()
+            print(revision)
+            for k in range(0, 2):
+                revision = revision.next_build()
+                print(revision)
+
+    revisions = ["R1A001", "R2A002", "R12ACD003", "R1AB002", "R1Z038", "R1Z037", "R12A002", "R10AB006", "R1B001"]
+    print("Rewizje nieposortowane: {}".format(revisions))
+    revisions.sort()
+    print("Rewizje posortowane:    {}".format(revisions))
