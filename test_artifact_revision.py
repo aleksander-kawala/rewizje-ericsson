@@ -19,7 +19,7 @@ class ArtifactRevisionTest(unittest.TestCase):
         self.assertEqual(str(next_rev), "B")
 
     def test_next_letter_Z_to_AA(self):
-        rev = ArtifactRevision("Z56")
+        rev = ArtifactRevision("Z66")
         next_rev = rev.next_sharp()
         self.assertEqual(str(next_rev), "AA")
 

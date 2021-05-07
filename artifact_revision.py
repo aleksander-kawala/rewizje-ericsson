@@ -82,7 +82,7 @@ if __name__ == "__main__":
         if str(rev) != "A":
             rev.next_sharp()
         print(rev)
-        for j in range(0, 3):
+        for j in range(0, 4):
             rev = rev.next_subrevision()
             print(rev)
 
