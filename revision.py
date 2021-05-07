@@ -3,7 +3,7 @@ class Revision:
     FORBIDDEN_CHARACTERS = ['I', 'O', 'P', 'Q', 'R', 'W']
 
     def __init__(self, revision_string):
-        self._revision_string = revision_string
+        self.rev = revision_string
 
     def __eq__(self, other):
         raise NotImplementedError()
@@ -24,4 +24,4 @@ class Revision:
         raise NotImplementedError()
 
     def __str__(self):
-        return self._revision_string
+        return self.rev
