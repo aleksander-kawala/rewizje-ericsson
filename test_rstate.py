@@ -17,9 +17,10 @@ class RStateTest(unittest.TestCase):
         rstate_b = RState("R1B001")
         self.assertTrue(rstate_a < rstate_b)
 
-    def test_compare_B_greater_then_A(self):
+    def c(self):
         rstate_a = RState("R1A002")
         rstate_b = RState("R1B001")
+        comparsion = comparsion(rstate_a, rstate_b)
         self.assertTrue(rstate_b > rstate_a)
 
     def test_compare_A_not_equal_B(self):
@@ -31,6 +32,9 @@ class RStateTest(unittest.TestCase):
         rstate = RState("R1N002")
         next_rstate = rstate.next_letter()
         self.assertEqual(str(next_rstate), "R1S001")
+
+    def comprasion(self):
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

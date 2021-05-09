@@ -76,17 +76,63 @@ class ArtifactRevision(Revision):
         else:
             return ArtifactRevision(self.literyF() + '1')
 
+    def grater(self):
+        litery = self.literyF()
+        ciag = ''
+        ciag = ciag + str(len(litery))
+        for i in range(0, len(litery)):
+            ciag = ciag + litery[i]
+        liczby = self.liczbyF()
+        ciag = ciag + str(len(liczby))
+        for i in range(0, len(liczby)):
+            ciag = ciag + liczby[i]
+        return ciag
+
+    def zamiana(self):
+        lista=[]
+        x=0
+        rewizja=''
+        for i in range(0, len(self.rev)):
+            lista.append(self.rev[i])
+
+        for i in range(1, len(self.rev)):
+            if(ord(lista[i]) < 65):
+                lista.pop(i)
+                lista.pop(0)
+                break
+
+        for i in range(0, len(lista)):
+            rewizja = rewizja + lista[i]
+
+        return rewizja
+
 if __name__ == "__main__":
     rev = ArtifactRevision("A")
     for i in range(0, 5):
-        if str(rev) != "A":
-            rev.next_sharp()
         print(rev)
         for j in range(0, 4):
             rev = rev.next_subrevision()
             print(rev)
+        rev = rev.next_sharp()
 
     revisions = ["A", "Z", "C1", "C2", "C12", "C20", "AA1", "AB1", "AB3", "AB21", "AB30"]
     print("Rewizje nieposortowane: {}".format(revisions))
     revisions.sort()
     print("Rewizje posortowane:    {}".format(revisions))
+
+    for i in range(0, len(revisions)):
+        rev = ArtifactRevision(revisions[i])
+        ciag = rev.grater()
+        revisions[i] = ciag
+
+    revisions.sort()
+
+    for i in range(0, len(revisions)):
+        ciag = ArtifactRevision(revisions[i])
+        rev = ciag.zamiana()
+        revisions[i] = rev
+
+    print("Rewizje poprawnie posortowane: {}".format(revisions))
+
+
+

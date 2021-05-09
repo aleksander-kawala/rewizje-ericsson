@@ -18,10 +18,31 @@ class ArtifactRevisionTest(unittest.TestCase):
         next_rev = rev.next_sharp()
         self.assertEqual(str(next_rev), "B")
 
-    def test_next_letter_Z_to_AA(self):
+    def test_next_sharp_Z_to_AA(self):
         rev = ArtifactRevision("Z66")
         next_rev = rev.next_sharp()
         self.assertEqual(str(next_rev), "AA")
+
+    def test_compare_B_greater_then_A(self):
+        rev_a = ArtifactRevision("AZ1")
+        rev_b = ArtifactRevision("ABC123")
+        rev_a = rev_a.grater()
+        rev_b = rev_b.grater()
+        self.assertTrue(rev_b > rev_a)
+
+    def test_compare_A_less_then_B(self):
+        rev_a = ArtifactRevision("A63")
+        rev_b = ArtifactRevision("A124")
+        rev_a = rev_a.grater()
+        rev_b = rev_b.grater()
+        self.assertTrue(rev_a < rev_b)
+
+    def test_compare_A_not_equal_B(self):
+        rev_a = ArtifactRevision("ZB102")
+        rev_b = ArtifactRevision("ZB201")
+        rev_a = rev_a.grater()
+        rev_b = rev_b.grater()
+        self.assertTrue(rev_a != rev_b)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
