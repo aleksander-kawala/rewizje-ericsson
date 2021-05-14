@@ -26,22 +26,22 @@ class ReleaseTest(unittest.TestCase):
     def test_compare_B_greater_then_A(self):
         rev_a = Release("G21Q2.3")
         rev_b = Release("G21Q2.23")
-        rev_a = rev_a.grater()
-        rev_b = rev_b.grater()
+        #rev_a = rev_a.grater()
+        #rev_b = rev_b.grater()
         self.assertTrue(rev_b > rev_a)
 
     def test_compare_A_less_then_B(self):
         rev_a = Release("G20Q3.2")
         rev_b = Release("G20Q4")
-        rev_a = rev_a.grater()
-        rev_b = rev_b.grater()
+        #rev_a = rev_a.grater()
+        #rev_b = rev_b.grater()
         self.assertTrue(rev_a < rev_b)
 
     def test_compare_A_not_equal_B(self):
         rev_a = Release("G19Q4.12")
         rev_b = Release("G19Q4.1")
-        rev_a = rev_a.grater()
-        rev_b = rev_b.grater()
+        #rev_a = rev_a.grater()
+        #rev_b = rev_b.grater()
         self.assertTrue(rev_a != rev_b)
 
 if __name__ == '__main__':

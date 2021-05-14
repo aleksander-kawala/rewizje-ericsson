@@ -102,6 +102,9 @@ class Release(Revision):
             rev = rev + lista[i]
 
         return rev
+        
+    def __gt__(self, other):
+        pass
 
 if __name__ == "__main__":
     rev = Release("G19Q1")
@@ -112,10 +115,11 @@ if __name__ == "__main__":
             print(rev)
         rev = rev.next_quarter()
 
-    revisions = ["G19Q2","G20Q1.2","G19Q3","G20Q4","G19Q2.1","G20Q1.1","G20Q3.2","G19Q1","G20Q2","G19Q4","G21Q1","G20Q3.10","G20Q3.1","G20Q1","G20Q3"]
-    print("Rewizje nieposortowane: {}".format(revisions))
+    revision_strings = ["G19Q2","G20Q1.2","G19Q3","G20Q4","G19Q2.1","G20Q1.1","G20Q3.2","G19Q1","G20Q2","G19Q4","G21Q1","G20Q3.10","G20Q3.1","G20Q1","G20Q3"]
+    revisions = [Release(r) for r in revision_strings]
+    print("Rewizje nieposortowane: {}".format([str(r) for r in revisions]))
     revisions.sort()
-    print("Rewizje posortowane:    {}".format(revisions))
+    print("Rewizje posortowane:    {}".format([str(r) for r in revisions]))
 
     for i in range(0, len(revisions)):
         rev = Release(revisions[i])

@@ -145,10 +145,11 @@ if __name__ == "__main__":
                 print(rev)
         rev = rev.next_sharp()
 
-    revisions = ["PA1", "PA2", "B", "PC1", "PC12", "PC20", "PAA1", "PB1", "PAB3", "PAB21", "PAB30", "C", "AA", "AB", "A"]
-    print("Rewizje nieposortowane: {}".format(revisions))
+    revision_strings = ["PA1", "PA2", "B", "PC1", "PC12", "PC20", "PAA1", "PB1", "PAB3", "PAB21", "PAB30", "C", "AA", "AB", "A"]
+    revisions = [DocRevision(r) for r in revision_strings]
+    print("Rewizje nieposortowane: {}".format([str(r) for r in revisions]))
     revisions.sort()
-    print("Rewizje posortowane:    {}".format(revisions))
+    print("Rewizje posortowane:    {}".format([str(r) for r in revisions]))
 
     for i in range(0, len(revisions)):
         rev = DocRevision(revisions[i])

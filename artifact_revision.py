@@ -14,6 +14,10 @@ class ArtifactRevision(Revision):
         AA
         etc.
     '''
+    def __init__(self, _rev_string):
+        super().__init__(_rev_string)
+        self.letters = self.literyF()
+        self.digits = self.liczbyF()
 
     def literyF(self):
         litery = ''
@@ -115,10 +119,11 @@ if __name__ == "__main__":
             print(rev)
         rev = rev.next_sharp()
 
-    revisions = ["A", "Z", "C1", "C2", "C12", "C20", "AA1", "AB1", "AB3", "AB21", "AB30"]
-    print("Rewizje nieposortowane: {}".format(revisions))
+    revision_strings = ["A", "Z", "C1", "C2", "C12", "C20", "AA1", "AB1", "AB3", "AB21", "AB30"]
+    revisions = [ArtifactRevision(r) for r in revision_strings]
+    print("Rewizje nieposortowane: {}".format([str(r) for r in revisions]))
     revisions.sort()
-    print("Rewizje posortowane:    {}".format(revisions))
+    print("Rewizje posortowane:    {}".format([str(r) for r in revisions]))
 
     for i in range(0, len(revisions)):
         rev = ArtifactRevision(revisions[i])

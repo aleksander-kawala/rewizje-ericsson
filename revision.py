@@ -6,22 +6,22 @@ class Revision:
         self.rev = revision_string
 
     def __eq__(self, other):
-        raise NotImplementedError()
+        return self.rev == other.rev
 
     def __ne__(self, other):
-        raise NotImplementedError()
+        return not self.__eq__(other)
 
     def __lt__(self, other):
-        raise NotImplementedError()
+        return not self.__ge__(other)
 
     def __le__(self, other):
-        raise NotImplementedError()
+        return not self.__gt__(other)
 
     def __gt__(self, other):
         raise NotImplementedError()
 
     def __ge__(self, other):
-        raise NotImplementedError()
+        return self.__gt__(other) or self.__eq__(other)
 
     def __str__(self):
         return self.rev

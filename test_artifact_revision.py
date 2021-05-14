@@ -26,22 +26,22 @@ class ArtifactRevisionTest(unittest.TestCase):
     def test_compare_B_greater_then_A(self):
         rev_a = ArtifactRevision("AZ1")
         rev_b = ArtifactRevision("ABC123")
-        rev_a = rev_a.grater()
-        rev_b = rev_b.grater()
+        #rev_a = rev_a.grater()
+        #rev_b = rev_b.grater()
         self.assertTrue(rev_b > rev_a)
 
     def test_compare_A_less_then_B(self):
         rev_a = ArtifactRevision("A63")
         rev_b = ArtifactRevision("A124")
-        rev_a = rev_a.grater()
-        rev_b = rev_b.grater()
+        #rev_a = rev_a.grater()
+        #rev_b = rev_b.grater()
         self.assertTrue(rev_a < rev_b)
 
     def test_compare_A_not_equal_B(self):
         rev_a = ArtifactRevision("ZB102")
         rev_b = ArtifactRevision("ZB201")
-        rev_a = rev_a.grater()
-        rev_b = rev_b.grater()
+        #rev_a = rev_a.grater()
+        #rev_b = rev_b.grater()
         self.assertTrue(rev_a != rev_b)
 
 if __name__ == '__main__':

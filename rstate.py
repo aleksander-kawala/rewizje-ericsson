@@ -41,7 +41,8 @@ if __name__ == "__main__":
                 revision = revision.next_build()
                 print(revision)
 
-    revisions = ["R1A001", "R2A002", "R12ACD003", "R1AB002", "R1Z038", "R1Z037", "R12A002", "R10AB006", "R1B001"]
-    print("Rewizje nieposortowane: {}".format(revisions))
+    revision_strings = ["R1A001", "R2A002", "R12ACD003", "R1AB002", "R1Z038", "R1Z037", "R12A002", "R10AB006", "R1B001"]
+    revisions = [RState(r) for r in revision_strings]
+    print("Rewizje nieposortowane: {}".format([str(r) for r in revisions]))
     revisions.sort()
-    print("Rewizje posortowane:    {}".format(revisions))
+    print("Rewizje posortowane:    {}".format([str(r) for r in revisions]))
