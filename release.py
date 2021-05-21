@@ -65,53 +65,27 @@ class Release(Revision):
         return Release(rev)
 
     def __gt__(self, other):
-        lista = []
-        listaO = []
-        lista2O = []
-        lista2 = []
-        rev = ''
-        revO = ''
-        for i in range(0, len(self.rev)):
-            if (i > 4):
-                lista.append(self.rev[i])
+        a = ''
+        b = 'a'
+        if(int(self.rev[1:3]) > int(other.rev[1:3])):
+            return b
+        elif(int(self.rev[1:3]) == int(other.rev[1:3])):
+            if(int(self.rev[4]) > int(other.rev[4])):
+                return b
+            elif(int(self.rev[4]) == int(other.rev[4])):
+                if(len(self.rev) > 5):
+                    if(len(other.rev) > 5):
+                        if(int(self.rev[6:]) > int(other.rev[6:])):
+                            return b
+                        else:
+                            return a
+                    else:
+                        return b
+                else:
+                    return a
             else:
-                pass
-                lista.append(self.rev[i])
-                lista2.append(self.rev[i])
-
-        for i in range(0, len(other.rev)):
-            if (i > 4):
-                listaO.append(other.rev[i])
-            else:
-                pass
-                listaO.append(other.rev[i])
-                lista2O.append(other.rev[i])
-
-        if ('.' in lista):
-            liczby = self.rev[6:]
-            liczby = len(liczby)
-            lista.insert(6, liczby)
+                return a
         else:
-            pass
-
-        if ('.' in listaO):
-            liczbyO = other.rev[6:]
-            liczbyO = len(liczbyO)
-            listaO.insert(6, liczbyO)
-        else:
-            pass
-
-        for i in range(0, len(lista)):
-            rev = rev + str(lista[i])
-
-        for i in range(0, len(listaO)):
-            revO = revO + str(listaO[i])
-
-        if (rev > revO):
-            a = 'a'
-            return a
-        else:
-            a = ''
             return a
 
 if __name__ == "__main__":

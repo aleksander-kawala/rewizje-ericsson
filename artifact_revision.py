@@ -81,30 +81,21 @@ class ArtifactRevision(Revision):
             return ArtifactRevision(self.literyF() + '1')
 
     def __gt__(self, other):
-        litery = self.literyF()
-        literyO = other.literyF()
-        ciag = ''
-        ciagO = ''
-        ciag = ciag + str(len(litery))
-        ciagO = ciagO + str(len(literyO))
-        for i in range(0, len(litery)):
-            ciag = ciag + litery[i]
-        for i in range(0, len(literyO)):
-            ciagO = ciagO + literyO[i]
-        liczby = self.liczbyF()
-        liczbyO = other.liczbyF()
-        ciag = ciag + str(len(liczby))
-        ciagO = ciagO + str(len(liczbyO))
-        for i in range(0, len(liczby)):
-            ciag = ciag + liczby[i]
-        for i in range(0, len(liczbyO)):
-            ciagO = ciagO + liczbyO[i]
-
-        if(ciag > ciagO):
-            a='a'
-            return a
+        a = ''
+        b = 'a'
+        if (len(self.literyF()) > len(other.literyF())):
+            return b
+        elif (len(self.literyF()) == len(other.literyF())):
+            if (str(self.literyF()) > str(other.literyF())):
+                return b
+            elif (str(self.literyF()) == str(other.literyF())):
+                if (int(self.liczbyF()) > int(other.liczbyF())):
+                    return b
+                else:
+                    return a
+            else:
+                return a
         else:
-            a=''
             return a
 
 if __name__ == "__main__":

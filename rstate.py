@@ -90,64 +90,48 @@ class RState(Revision):
                     return RState(litery3 + litery2 + 'A' + '001')
 
     def __gt__(self, other):
+        a = ''
+        b = 'a'
         liczby = ''
         liczbyO = ''
         litery = ''
         literyO = ''
-        ciag = ''
-        ciagO = ''
-        kod = []
-        kodO = []
-        for i in range(0, len(self.rev)):
-            kod.append(self.rev[i])
-
-        for i in range(0, len(other.rev)):
-            kodO.append(other.rev[i])
-
         for i in range(1, len(self.rev)):
-            if (ord(self.rev[i]) not in range(48, 58)):
-                j = i
-                break
-            else:
+            if (ord(self.rev[i]) in range(48, 58)):
                 liczby = liczby + self.rev[i]
-
-        for i in range(1, len(other.rev)):
-            if (ord(other.rev[i]) not in range(48, 58)):
-                j = i
-                break
             else:
+                break
+            if (ord(other.rev[i]) in range(48, 58)):
                 liczbyO = liczbyO + other.rev[i]
-
-        kod.insert(1, len(liczby))
-        kodO.insert(1, len(liczbyO))
-
-        for i in range(j + 1, len(kod)):
-            if (ord(kod[i]) in range(48, 58)):
-                break
             else:
-                litery = litery + self.rev[i]
-
-        kod.insert(j + 1, len(litery))
-
-        for i in range(j + 1, len(kodO)):
-            if (ord(kodO[i]) in range(48, 58)):
                 break
+
+        if(int(liczby) > int(liczbyO)):
+            return b
+        elif(int(liczby) == int(liczbyO)):
+            for i in range(1, len(self.rev)):
+                if(ord(self.rev[i]) not in range(48, 58)):
+                    litery = litery + self.rev[i]
+
+            for i in range(1, len(other.rev)):
+                if(ord(other.rev[i]) not in range(48, 58)):
+                    literyO = literyO + other.rev[i]
+
+            if(len(litery) > len(literyO)):
+                return b
+            elif(len(litery) == len(literyO)):
+                if(str(litery) > str(literyO)):
+                    return b
+                elif(str(litery) == str(literyO)):
+                    if(int(self.rev[len(self.rev)-3:]) > int(other.rev[len(other.rev)-3:])):
+                        return b
+                    else:
+                        return a
+                else:
+                    return a
             else:
-                literyO = literyO + other.rev[i]
-
-        kodO.insert(j + 1, len(literyO))
-
-        for i in range(0, len(kod)):
-            ciag = ciag + str(kod[i])
-
-        for i in range(0, len(kodO)):
-            ciagO = ciagO + str(kodO[i])
-
-        if (ciag > ciagO):
-            a = 'a'
-            return a
+                return a
         else:
-            a = ''
             return a
 
 if __name__ == "__main__":
