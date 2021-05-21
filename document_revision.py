@@ -87,11 +87,13 @@ class DocRevision(Revision):
             else:
                 return DocRevision(self.literyF() + '1')
 
-    def grater(self):
+    def __gt__(self, other):
         litery = self.literyF()
+        literyO = other.literyF()
+        ciagO = ''
         ciag = ''
-        if(ord(litery[0]) == 80):
-            ciag = str(len(litery)-1)
+        if (ord(litery[0]) == 80):
+            ciag = str(len(litery) - 1)
             for i in range(1, len(litery)):
                 ciag = ciag + litery[i]
             ciag = ciag + '0'
@@ -101,37 +103,33 @@ class DocRevision(Revision):
                 ciag = ciag + litery[i]
             ciag = ciag + '1'
 
+        if (ord(literyO[0]) == 80):
+            ciagO = str(len(literyO) - 1)
+            for i in range(1, len(literyO)):
+                ciagO = ciagO + literyO[i]
+            ciagO = ciagO + '0'
+        else:
+            ciagO = str(len(literyO))
+            for i in range(0, len(literyO)):
+                ciagO = ciagO + literyO[i]
+            ciagO = ciagO + '1'
+
         liczby = self.liczbyF()
         ciag = ciag + str(len(liczby))
         for i in range(0, len(liczby)):
             ciag = ciag + liczby[i]
-        return ciag
 
-    def zamiana(self):
-        lista=[]
-        x=0
-        rewizja=''
-        for i in range(0, len(self.rev)):
-            lista.append(self.rev[i])
+        liczbyO = other.liczbyF()
+        ciagO = ciagO + str(len(liczbyO))
+        for i in range(0, len(liczbyO)):
+            ciagO = ciagO + liczbyO[i]
 
-        for i in range(1, len(self.rev)):
-            if(ord(lista[i]) < 65):
-                if(lista[i] == '0'):
-                    lista.pop(i + 1)
-                    lista.pop(i)
-                    lista.pop(0)
-                    lista.insert(0, 'P')
-                else:
-                    lista.pop(i + 1)
-                    lista.pop(i)
-                    lista.pop(0)
-
-                break
-
-        for i in range(0, len(lista)):
-            rewizja = rewizja + lista[i]
-
-        return rewizja
+        if (ciag > ciagO):
+            a = 'a'
+            return a
+        else:
+            a = ''
+            return a
 
 if __name__ == "__main__":
     rev = DocRevision("PA1")
@@ -150,17 +148,3 @@ if __name__ == "__main__":
     print("Rewizje nieposortowane: {}".format([str(r) for r in revisions]))
     revisions.sort()
     print("Rewizje posortowane:    {}".format([str(r) for r in revisions]))
-
-    for i in range(0, len(revisions)):
-        rev = DocRevision(revisions[i])
-        ciag = rev.grater()
-        revisions[i] = ciag
-
-    revisions.sort()
-
-    for i in range(0, len(revisions)):
-        ciag = DocRevision(revisions[i])
-        rev = ciag.zamiana()
-        revisions[i] = rev
-
-    print("Rewizje poprawnie posortowane: {}".format(revisions))

@@ -64,47 +64,55 @@ class Release(Revision):
 
         return Release(rev)
 
-    def grater(self):
+    def __gt__(self, other):
         lista = []
+        listaO = []
+        lista2O = []
         lista2 = []
         rev = ''
+        revO = ''
         for i in range(0, len(self.rev)):
-            if(i > 4):
+            if (i > 4):
                 lista.append(self.rev[i])
             else:
                 pass
                 lista.append(self.rev[i])
                 lista2.append(self.rev[i])
 
+        for i in range(0, len(other.rev)):
+            if (i > 4):
+                listaO.append(other.rev[i])
+            else:
+                pass
+                listaO.append(other.rev[i])
+                lista2O.append(other.rev[i])
+
         if ('.' in lista):
             liczby = self.rev[6:]
             liczby = len(liczby)
             lista.insert(6, liczby)
+        else:
+            pass
 
+        if ('.' in listaO):
+            liczbyO = other.rev[6:]
+            liczbyO = len(liczbyO)
+            listaO.insert(6, liczbyO)
         else:
             pass
 
         for i in range(0, len(lista)):
             rev = rev + str(lista[i])
 
-        return rev
+        for i in range(0, len(listaO)):
+            revO = revO + str(listaO[i])
 
-    def zmiana(self):
-        lista = []
-        rev = ''
-        for i in range(0, len(self.rev)):
-            lista.append(self.rev[i])
-
-        if ('.' in lista):
-            lista.pop(6)
-
-        for i in range(0, len(lista)):
-            rev = rev + lista[i]
-
-        return rev
-        
-    def __gt__(self, other):
-        pass
+        if (rev > revO):
+            a = 'a'
+            return a
+        else:
+            a = ''
+            return a
 
 if __name__ == "__main__":
     rev = Release("G19Q1")
@@ -120,17 +128,3 @@ if __name__ == "__main__":
     print("Rewizje nieposortowane: {}".format([str(r) for r in revisions]))
     revisions.sort()
     print("Rewizje posortowane:    {}".format([str(r) for r in revisions]))
-
-    for i in range(0, len(revisions)):
-        rev = Release(revisions[i])
-        ciag = rev.grater()
-        revisions[i] = ciag
-
-    revisions.sort()
-
-    for i in range(0, len(revisions)):
-        ciag = Release(revisions[i])
-        rev = ciag.zmiana()
-        revisions[i] = rev
-
-    print("Rewizje poprawnie posortowane: {}".format(revisions))

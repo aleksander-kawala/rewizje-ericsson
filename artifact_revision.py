@@ -1,7 +1,7 @@
 from revision import Revision
 
 class ArtifactRevision(Revision):
-    '''
+    """
     Examples:
         A
         B
@@ -13,7 +13,7 @@ class ArtifactRevision(Revision):
         Z
         AA
         etc.
-    '''
+    """
     def __init__(self, _rev_string):
         super().__init__(_rev_string)
         self.letters = self.literyF()
@@ -22,7 +22,7 @@ class ArtifactRevision(Revision):
     def literyF(self):
         litery = ''
         for i in range(0, len(self.rev)):
-            if (ord(self.rev[i]) >= 65):
+            if ord(self.rev[i]) >= 65:
                 litery = litery + self.rev[i]
             else:
                 return litery
@@ -45,16 +45,16 @@ class ArtifactRevision(Revision):
         suma = 0
         for i in range(0, len(litery)):
             literyL.append(litery[i])
-            if (ord(litery[i]) == 90):
+            if ord(litery[i]) == 90:
                 suma = suma + 1
 
         for i in range(0, len(litery)):
             i = i * (-1) - 1
-            if (ord(litery[i]) < 90):
-                if (ord(litery[i]) in (72, 86)):
+            if ord(litery[i]) < 90:
+                if ord(litery[i]) in (72, 86):
                     literyL[i] = chr(ord(litery[i]) + 2)
 
-                elif (ord(litery[i]) == 78):
+                elif ord(litery[i]) == 78:
                     literyL[i] = chr(ord(litery[i]) + 5)
 
                 else:
@@ -80,35 +80,32 @@ class ArtifactRevision(Revision):
         else:
             return ArtifactRevision(self.literyF() + '1')
 
-    def grater(self):
+    def __gt__(self, other):
         litery = self.literyF()
+        literyO = other.literyF()
         ciag = ''
+        ciagO = ''
         ciag = ciag + str(len(litery))
+        ciagO = ciagO + str(len(literyO))
         for i in range(0, len(litery)):
             ciag = ciag + litery[i]
+        for i in range(0, len(literyO)):
+            ciagO = ciagO + literyO[i]
         liczby = self.liczbyF()
+        liczbyO = other.liczbyF()
         ciag = ciag + str(len(liczby))
+        ciagO = ciagO + str(len(liczbyO))
         for i in range(0, len(liczby)):
             ciag = ciag + liczby[i]
-        return ciag
+        for i in range(0, len(liczbyO)):
+            ciagO = ciagO + liczbyO[i]
 
-    def zamiana(self):
-        lista=[]
-        x=0
-        rewizja=''
-        for i in range(0, len(self.rev)):
-            lista.append(self.rev[i])
-
-        for i in range(1, len(self.rev)):
-            if(ord(lista[i]) < 65):
-                lista.pop(i)
-                lista.pop(0)
-                break
-
-        for i in range(0, len(lista)):
-            rewizja = rewizja + lista[i]
-
-        return rewizja
+        if(ciag > ciagO):
+            a='a'
+            return a
+        else:
+            a=''
+            return a
 
 if __name__ == "__main__":
     rev = ArtifactRevision("A")
@@ -119,25 +116,8 @@ if __name__ == "__main__":
             print(rev)
         rev = rev.next_sharp()
 
-    revision_strings = ["A", "Z", "C1", "C2", "C12", "C20", "AA1", "AB1", "AB3", "AB21", "AB30"]
+    revision_strings = ["AB3", "Z", "C1", "C2", "AA1", "C20", "C12", "AB1", "A", "AB30", "AB21"]
     revisions = [ArtifactRevision(r) for r in revision_strings]
     print("Rewizje nieposortowane: {}".format([str(r) for r in revisions]))
     revisions.sort()
     print("Rewizje posortowane:    {}".format([str(r) for r in revisions]))
-
-    for i in range(0, len(revisions)):
-        rev = ArtifactRevision(revisions[i])
-        ciag = rev.grater()
-        revisions[i] = ciag
-
-    revisions.sort()
-
-    for i in range(0, len(revisions)):
-        ciag = ArtifactRevision(revisions[i])
-        rev = ciag.zamiana()
-        revisions[i] = rev
-
-    print("Rewizje poprawnie posortowane: {}".format(revisions))
-
-
-

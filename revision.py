@@ -18,7 +18,7 @@ class Revision:
         return not self.__gt__(other)
 
     def __gt__(self, other):
-        raise NotImplementedError()
+        return self
 
     def __ge__(self, other):
         return self.__gt__(other) or self.__eq__(other)
